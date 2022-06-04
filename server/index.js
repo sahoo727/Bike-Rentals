@@ -1,10 +1,17 @@
 const express = require('express')
-
+const mongoose = require('mongoose')
+const dotenv=require('dotenv')
 const app = express()
+const UserRoute=require('./routes/Users')
+const RegRoute=require('./routes/register')
 
-app.get('/', (req, res) => {
-	res.send('Happy Hacking!').end()
-})
+dotenv.config()
+
+mongoose.connect(process.env.MONGODB_URL).then(()=>console.log("DB successfull")).catch((err)=>{console.log(err)})
+
+app.use(express.json())
+app.use('/',UserRoute);
+app.use('/auth',RegRoute)
 
 
 
