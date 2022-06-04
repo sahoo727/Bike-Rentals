@@ -6,7 +6,7 @@ const UserRoute=require('./routes/Users')
 const RegRoute=require('./routes/register')
 const LogRoute=require('./routes/Login')
 const Bikesell=require('./routes/Bikesell')
-
+const BikeBuy=require('./routes/Bikebuy')
 dotenv.config()
 
 mongoose.connect(process.env.MONGODB_URL).then(()=>console.log("DB successfull")).catch((err)=>{console.log(err)})
@@ -16,6 +16,7 @@ app.use('/',UserRoute);
 app.use('/auth',RegRoute)
 app.use('/auth',LogRoute);
 app.use('/bike',Bikesell);
+app.use('/bike',BikeBuy);
 
 
 app.listen(5000, console.log('Listening on port: 5000'))
